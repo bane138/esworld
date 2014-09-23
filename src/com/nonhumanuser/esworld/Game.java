@@ -17,10 +17,17 @@
 package com.nonhumanuser.esworld;
 
 import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import com.nonhumanuser.esworld.gfx.Renderer;
+
 /**
+ * Project: E's World
+ * 
  * @author dpitzel
  *
  */
@@ -35,9 +42,14 @@ public class Game extends Canvas implements Runnable {
 	
 	private boolean running = false;
 	private Thread thread;
+	private Renderer gfx;
+	
+	public static Game getInstance() {
+		return game;
+	}
 	
 	public void init() {
-		
+		gfx = new Renderer();
 	}
 	
 	public void tick() {
@@ -45,7 +57,22 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	public void render() {
+		BufferStrategy bs = this.getBufferStrategy();
+		if(bs == null) {
+			createBufferStrategy(3);
+			return;
+		}
 		
+		Graphics g = bs.getDrawGraphics();
+		g.setColor(new Color(20, 0, 40));
+		g.fillRect(0, 0, WIDTH, HEIGHT);
+		
+		// Graphics ////////////////////////////////
+		gfx.renderBackground(g);
+		gfx.renderForeground(g);
+		
+		g.dispose();
+		bs.show();
 	}
 	
 	@Override
