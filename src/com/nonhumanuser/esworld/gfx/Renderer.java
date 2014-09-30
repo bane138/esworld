@@ -16,9 +16,11 @@
  */
 package com.nonhumanuser.esworld.gfx;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import com.nonhumanuser.esworld.Game;
+import com.nonhumanuser.esworld.screens.Menu;
 
 /**
  * @author dpitzel
@@ -26,10 +28,24 @@ import com.nonhumanuser.esworld.Game;
  */
 public class Renderer {
 
-	private static Game game = Game.getInstance();
+	//private static Game game = Game.getInstance();
 	
 	public void renderBackground(Graphics g) {
-		
+		switch(Game.state) {
+		case GAME:
+			break;
+		case MENU:
+			Menu.render(g);
+			break;
+		case OPTIONS:
+			break;
+		case PAUSE:
+			break;
+		default:
+			g.setColor(Color.RED);
+			g.drawString("Unknown Game State", 150, 150);
+		}
+		Menu.render(g);
 	}
 	
 	public void renderForeground(Graphics g) {
