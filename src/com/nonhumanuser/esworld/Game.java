@@ -23,7 +23,9 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import com.nonhumanuser.esworld.enums.GameState;
 import com.nonhumanuser.esworld.gfx.Renderer;
+import com.nonhumanuser.esworld.screens.Menu;
 
 /**
  * Project: E's World
@@ -34,11 +36,12 @@ import com.nonhumanuser.esworld.gfx.Renderer;
 public class Game extends Canvas implements Runnable {
 	
 	private static final long serialVersionUID = 5197888200994473611L;
-	
+	private static JFrame frame = new JFrame();
 	public static final int WIDTH = 640;
 	public static final int HEIGHT = WIDTH / 4 * 3;
 	public static final String TITLE = "E's World";
 	private static Game game = new Game();
+	public static GameState state = GameState.MENU;
 	
 	private boolean running = false;
 	private Thread thread;
@@ -49,6 +52,7 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	public void init() {
+		Menu.create();
 		gfx = new Renderer();
 	}
 	
@@ -103,6 +107,7 @@ public class Game extends Canvas implements Runnable {
 			if(System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				System.out.println("Ticks: " + ticks + ", FPS: " + frames);
+				//frame.setTitle(TITLE + "        Ticks: " + ticks + "    FPS: " + frames);
 				ticks = 0;
 				frames = 0;
 			}
@@ -111,7 +116,7 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	public static void main(String args[]) {
-		JFrame frame = new JFrame(TITLE);
+		frame.setTitle(TITLE);
 		frame.add(game);
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
