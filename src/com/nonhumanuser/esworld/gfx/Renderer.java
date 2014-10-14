@@ -35,7 +35,7 @@ public class Renderer {
 		case GAME:
 			break;
 		case MENU:
-			Menu.render(g);
+			Game.getInstance().menu.render(g);
 			break;
 		case OPTIONS:
 			break;
@@ -45,7 +45,7 @@ public class Renderer {
 			g.setColor(Color.RED);
 			g.drawString("Unknown Game State", 150, 150);
 		}
-		Menu.render(g);
+		Game.getInstance().menu.render(g);
 	}
 	
 	public void renderForeground(Graphics g) {

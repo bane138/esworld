@@ -25,7 +25,9 @@ import javax.swing.JFrame;
 
 import com.nonhumanuser.esworld.enums.GameState;
 import com.nonhumanuser.esworld.gfx.Renderer;
+import com.nonhumanuser.esworld.input.MouseInput;
 import com.nonhumanuser.esworld.screens.Menu;
+import com.nonhumanuser.esworld.utils.ResourceLoader;
 
 /**
  * Project: E's World
@@ -46,14 +48,17 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	private Thread thread;
 	private Renderer gfx;
+	public Menu menu;
 	
 	public static Game getInstance() {
 		return game;
 	}
 	
 	public void init() {
-		Menu.create();
+		ResourceLoader.loadImages();
+		menu = new Menu();
 		gfx = new Renderer();
+		this.addMouseListener(new MouseInput());
 	}
 	
 	public void tick() {
