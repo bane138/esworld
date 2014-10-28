@@ -51,10 +51,14 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	private Thread thread;
 	private Renderer gfx;
-	public Menu menu;
+	private Menu menu;
 	
 	public static Game getInstance() {
 		return game;
+	}
+	
+	public Menu getMenu() {
+		return menu;
 	}
 	
 	public void init() {
@@ -62,7 +66,9 @@ public class Game extends Canvas implements Runnable {
 		ResourceLoader.loadFonts();
 		menu = new Menu();
 		gfx = new Renderer();
-		this.addMouseListener(new MouseInput());
+		MouseInput mouse = new MouseInput();
+		this.addMouseListener(mouse);
+		this.addMouseMotionListener(mouse);
 	}
 	
 	public void tick() {
