@@ -19,6 +19,8 @@ package com.nonhumanuser.esworld;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
@@ -26,6 +28,7 @@ import javax.swing.JFrame;
 import com.nonhumanuser.esworld.enums.GameState;
 import com.nonhumanuser.esworld.gfx.Renderer;
 import com.nonhumanuser.esworld.input.MouseInput;
+import com.nonhumanuser.esworld.libs.Resource;
 import com.nonhumanuser.esworld.screens.Menu;
 import com.nonhumanuser.esworld.utils.ResourceLoader;
 
@@ -56,6 +59,7 @@ public class Game extends Canvas implements Runnable {
 	
 	public void init() {
 		ResourceLoader.loadImages();
+		ResourceLoader.loadFonts();
 		menu = new Menu();
 		gfx = new Renderer();
 		this.addMouseListener(new MouseInput());
@@ -121,8 +125,10 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	public static void main(String args[]) {
-		frame.setTitle(TITLE);
+		Image icon = Toolkit.getDefaultToolkit().getImage(Resource.RESOURCE_LOCATION + "icon.png");
 		frame.add(game);
+		frame.setTitle(TITLE);
+		frame.setIconImage(icon);
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setFocusable(true);

@@ -23,8 +23,8 @@ public class Menu {
 	}
 	
 	public void drawButton(Graphics g, Rectangle rect, String text, int offset) {
-		Font tempFont = new Font("Arial", Font.BOLD, 45);
-		g.setFont(tempFont);
+		Font idlewild = new Font("idolwild", Font.PLAIN, 45);
+		g.setFont(idlewild);
 		g.setColor(Color.GREEN);
 		g.drawRect(rect.x, rect.y, rect.width, rect.height);
 		g.drawString(text, rect.x + offset, rect.y + 38);
@@ -34,8 +34,8 @@ public class Menu {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
 		g.drawImage(Images.title, 128, 10, null);
-		drawButton(g, play, "Play", 45);
-		drawButton(g, options, "Options",3);
-		drawButton(g, quit, "Quit", 45);
+		drawButton(g, play, "Play", 55);
+		drawButton(g, options, "Options",20);
+		drawButton(g, quit, "Quit", 55);
 	}
 }
