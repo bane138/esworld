@@ -20,7 +20,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import com.nonhumanuser.esworld.Game;
-import com.nonhumanuser.esworld.screens.Menu;
 
 /**
  * @author dpitzel
@@ -44,11 +43,25 @@ public class Renderer {
 		default:
 			g.setColor(Color.RED);
 			g.drawString("Unknown Game State", 150, 150);
+			break;
 		}
-		Game.getInstance().getMenu().render(g);
+		//Game.getInstance().getMenu().render(g);
 	}
 	
 	public void renderForeground(Graphics g) {
-		
+		switch(Game.state) {
+		case GAME:
+			break;
+		case MENU:
+			break;
+		case OPTIONS:
+			break;
+		case PAUSE:
+			break;
+		default:
+			g.setColor(Color.RED);
+			g.drawString("Unknown Game State", 150, 150);
+			break;
+		}
 	}
 }
